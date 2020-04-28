@@ -17,6 +17,14 @@ public class Cluster {
         }
     }
 
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public boolean containsItem(Item item) {
+        return items.contains(item);
+    }
+
     public double getDistance(Cluster cluster) {
         int pairs = 0;
         double distanceSum = 0;
@@ -27,6 +35,23 @@ public class Cluster {
             }
         }
         return distanceSum / pairs;
+    }
+
+    public Item getCentroid() {
+        if (items.isEmpty()){
+            return null;
+        }
+        Item centroid = new Item();
+        for (Item item : items) {
+            for (String characteristic : item.getCharacteristics()) {
+//                Double newCharacteristic = centroid.getCharacteristic(characteristic) != null ? centroid.getCharacteristic(characteristic) : 0.0+ item.getCharacteristic(characteristic);
+                centroid.addCharacteristic(characteristic, (centroid.getCharacteristic(characteristic) != null ? centroid.getCharacteristic(characteristic) : 0.0) + item.getCharacteristic(characteristic));
+            }
+        }
+        for (String characteristic : centroid.getCharacteristics()) {
+            centroid.addCharacteristic(characteristic, centroid.getCharacteristic(characteristic) / items.size());
+        }
+        return centroid;
     }
 
     public Cluster union(Cluster cluster) {

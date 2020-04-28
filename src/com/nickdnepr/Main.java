@@ -2,6 +2,7 @@ package com.nickdnepr;
 
 import com.nickdnepr.core.HierarchicalClusterBuilder;
 import com.nickdnepr.core.Item;
+import com.nickdnepr.core.KMeansClusterBuilder;
 
 import java.util.ArrayList;
 
@@ -23,5 +24,7 @@ public class Main {
         items.add(item6);
         HierarchicalClusterBuilder builder = new HierarchicalClusterBuilder(items);
         builder.process();
+        KMeansClusterBuilder kMeansClusterBuilder = new KMeansClusterBuilder(items, 2);
+        kMeansClusterBuilder.process();
     }
 }

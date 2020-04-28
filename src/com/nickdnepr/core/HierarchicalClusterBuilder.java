@@ -2,8 +2,6 @@ package com.nickdnepr.core;
 
 import com.nickdnepr.utils.Pair;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class HierarchicalClusterBuilder {
@@ -35,7 +33,7 @@ public class HierarchicalClusterBuilder {
             log.append(" ");
             log.append(second.toString());
             log.append(" ");
-            log.append(first.getDistance(second));
+            log.append(first.toString());
             log.append("\n");
         }
         System.out.println(log.toString());
@@ -60,5 +58,4 @@ public class HierarchicalClusterBuilder {
         }
         return closestPair;
     }
-
 }

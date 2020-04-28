@@ -3,6 +3,7 @@ package com.nickdnepr.core;
 import com.nickdnepr.utils.Pair;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Item {
 
@@ -39,11 +40,15 @@ public class Item {
         characteristics.put(characteristic, value);
     }
 
+    public Set<String> getCharacteristics() {
+        return characteristics.keySet();
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-//                ", characteristics=" + characteristics +
+                ", characteristics=" + characteristics +
                 '}';
     }
 }
