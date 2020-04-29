@@ -1,14 +1,21 @@
-package com.nickdnepr.core;
+package com.nickdnepr.core.cluster_builders;
 
+import com.nickdnepr.core.Cluster;
+import com.nickdnepr.core.Item;
 import com.nickdnepr.utils.Pair;
 
 import java.util.ArrayList;
 
-public class HierarchicalClusterBuilder {
+public class HierarchicalClusterBuilder extends AbstractClusterBuilder{
 
     private ArrayList<Cluster> clusters;
 
-    public HierarchicalClusterBuilder(ArrayList<Item> items) {
+    public HierarchicalClusterBuilder(ArrayList<Item> items, int clusterNum) {
+        super(items, clusterNum);
+    }
+
+    @Override
+    protected void init() {
         this.clusters = new ArrayList<>();
         for (Item item : items) {
             Cluster cluster = new Cluster();
@@ -19,7 +26,7 @@ public class HierarchicalClusterBuilder {
 
     public void process() {
         StringBuilder log = new StringBuilder();
-        while (clusters.size() > 1) {
+        while (clusters.size() > clusterNum) {
             log.append("Clusters: ");
             log.append(clusters.size());
             Pair<Cluster, Cluster> closestPair = getClosestPair();
@@ -39,6 +46,8 @@ public class HierarchicalClusterBuilder {
         System.out.println(log.toString());
     }
 
+
+
     private Pair<Cluster, Cluster> getClosestPair() {
         Double minDistance = null;
         Pair<Cluster, Cluster> closestPair = new Pair<>();
@@ -57,5 +66,10 @@ public class HierarchicalClusterBuilder {
             }
         }
         return closestPair;
+    }
+
+    @Override
+    public ArrayList<Cluster> getProcessedClusters() {
+        return clusters;
     }
 }

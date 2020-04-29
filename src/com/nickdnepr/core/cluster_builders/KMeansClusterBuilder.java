@@ -1,18 +1,23 @@
-package com.nickdnepr.core;
+package com.nickdnepr.core.cluster_builders;
 
+import com.nickdnepr.core.Cluster;
+import com.nickdnepr.core.Item;
 import com.nickdnepr.utils.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class KMeansClusterBuilder {
+public class KMeansClusterBuilder extends AbstractClusterBuilder{
 
-    private ArrayList<Item> items;
     private HashMap<Item, Cluster> clusters;
 
-    public KMeansClusterBuilder(ArrayList<Item> items, int clustersNum) {
-        this.items = items;
+    public KMeansClusterBuilder(ArrayList<Item> items, int clusterNum) {
+        super(items, clusterNum);
+    }
+
+    @Override
+    protected void init() {
         this.clusters = new HashMap<>();
         Item highest = new Item();
         Item lowest = new Item();
@@ -27,7 +32,7 @@ public class KMeansClusterBuilder {
                 }
             }
         }
-        for (int i = 0; i < clustersNum; i++) {
+        for (int i = 0; i < clusterNum; i++) {
             Item centroid = new Item();
             for (String characteristic : items.get(0).getCharacteristics()) {
                 Random random = new Random();
@@ -39,7 +44,7 @@ public class KMeansClusterBuilder {
         System.out.println();
     }
 
-    public void process() {
+    protected void process() {
         boolean stable = true;
         int iterations = 0;
         do {
@@ -77,5 +82,9 @@ public class KMeansClusterBuilder {
             iterations++;
         } while (!stable && iterations < 25);
         System.out.println(clusters.toString());
+    }
+
+    public ArrayList<Cluster> getProcessedClusters() {
+        return new ArrayList<>(clusters.values());
     }
 }

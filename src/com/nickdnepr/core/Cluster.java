@@ -38,13 +38,12 @@ public class Cluster {
     }
 
     public Item getCentroid() {
-        if (items.isEmpty()){
+        if (items.isEmpty()) {
             return null;
         }
         Item centroid = new Item();
         for (Item item : items) {
             for (String characteristic : item.getCharacteristics()) {
-//                Double newCharacteristic = centroid.getCharacteristic(characteristic) != null ? centroid.getCharacteristic(characteristic) : 0.0+ item.getCharacteristic(characteristic);
                 centroid.addCharacteristic(characteristic, (centroid.getCharacteristic(characteristic) != null ? centroid.getCharacteristic(characteristic) : 0.0) + item.getCharacteristic(characteristic));
             }
         }
@@ -59,6 +58,21 @@ public class Cluster {
         newCluster.items.addAll(items);
         newCluster.items.addAll(cluster.items);
         return newCluster;
+    }
+
+    public int size() {
+        return items.size();
+    }
+
+    public double avgSquareDistance() {
+        double result = 0;
+        for (Item outer : items) {
+            for (Item inner : items) {
+                result += Math.pow(outer.getDistance(inner), 2);
+            }
+        }
+        result /= items.size();
+        return result;
     }
 
     @Override

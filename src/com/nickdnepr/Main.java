@@ -1,8 +1,9 @@
 package com.nickdnepr;
 
-import com.nickdnepr.core.HierarchicalClusterBuilder;
+import com.nickdnepr.core.HardBassIndexCalculator;
+import com.nickdnepr.core.cluster_builders.HierarchicalClusterBuilder;
 import com.nickdnepr.core.Item;
-import com.nickdnepr.core.KMeansClusterBuilder;
+import com.nickdnepr.core.cluster_builders.KMeansClusterBuilder;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,20 @@ public class Main {
         items.add(item4);
         items.add(item5);
         items.add(item6);
-        HierarchicalClusterBuilder builder = new HierarchicalClusterBuilder(items);
-        builder.process();
-        KMeansClusterBuilder kMeansClusterBuilder = new KMeansClusterBuilder(items, 2);
-        kMeansClusterBuilder.process();
+        ArrayList<Item> items2 = new ArrayList<>();
+        items2.add(new Item(1,1));
+        items2.add(new Item(1,2));
+        items2.add(new Item(1,3));
+        items2.add(new Item(10,1));
+        items2.add(new Item(10,2));
+        items2.add(new Item(10,3));
+        HierarchicalClusterBuilder builder = new HierarchicalClusterBuilder(items2,2);
+        System.out.println(builder.getProcessedClusters());
+        System.out.println(builder.getProcessedClusters().size());
+        System.out.println(HardBassIndexCalculator.calculateIndex(builder.getProcessedClusters()));
+//        builder.process();
+        KMeansClusterBuilder kMeansClusterBuilder = new KMeansClusterBuilder(items, 6);
+//        kMeansClusterBuilder.process();
+//        System.out.println(HardBassIndexCalculator.calculateIndex(builder.getProcessedClusters()));
     }
 }
