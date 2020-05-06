@@ -48,6 +48,13 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
+//                ", characteristics=" + characteristics +
+                '}';
+    }
+
+    public String toLongString(){
+        return "Item{" +
+                "id=" + id +
                 ", characteristics=" + characteristics +
                 '}';
     }
