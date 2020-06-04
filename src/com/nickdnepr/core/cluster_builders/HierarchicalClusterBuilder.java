@@ -24,7 +24,7 @@ public class HierarchicalClusterBuilder extends AbstractClusterBuilder{
         }
     }
 
-    public void process() {
+    protected void process() {
         StringBuilder log = new StringBuilder();
         while (clusters.size() > clusterNum) {
             log.append("Clusters: ");

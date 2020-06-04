@@ -24,6 +24,11 @@ public class Item {
         }
     }
 
+    private Item(long id, HashMap<String, Double> characteristics) {
+        this.id = id;
+        this.characteristics = characteristics;
+    }
+
     public double getDistance(Item item) {
         double calc = 0;
         for (String characteristic : characteristics.keySet()) {
@@ -44,6 +49,10 @@ public class Item {
         return characteristics.keySet();
     }
 
+    public Item newCharacteristics(HashMap<String, Double> characteristics) {
+        return new Item(id, characteristics);
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -52,7 +61,7 @@ public class Item {
                 '}';
     }
 
-    public String toLongString(){
+    public String toLongString() {
         return "Item{" +
                 "id=" + id +
                 ", characteristics=" + characteristics +
