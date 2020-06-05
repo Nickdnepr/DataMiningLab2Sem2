@@ -2,6 +2,7 @@ package com.nickdnepr.core;
 
 import com.nickdnepr.utils.Pair;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -49,8 +50,12 @@ public class Item {
         return characteristics.keySet();
     }
 
-    public Item newCharacteristics(HashMap<String, Double> characteristics) {
-        return new Item(id, characteristics);
+    public Item newCharacteristics(ArrayList<String> characteristics) {
+        HashMap<String, Double> newCharacteristics = new HashMap<>();
+        for (String characteristic: characteristics){
+            newCharacteristics.putIfAbsent(characteristic, getCharacteristic(characteristic));
+        }
+        return new Item(id, newCharacteristics);
     }
 
     @Override

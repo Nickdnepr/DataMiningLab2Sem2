@@ -15,8 +15,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         ArrayList<Item> items = FileParser.readFile("file");
-        CharacteristicsFilter.calculateMatrix(items);
-//        System.exit(0);
+//        CharacteristicsFilter.calculateMatrix(items);
+        CharacteristicsFilter.removeUnnecessaryCharacteristics(items);
+        System.exit(0);
         for (Item item : items) {
             System.out.println(item.toLongString());
         }
