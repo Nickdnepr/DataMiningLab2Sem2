@@ -3,6 +3,7 @@ package com.nickdnepr.core.analysis;
 import com.nickdnepr.core.Item;
 import com.nickdnepr.utils.FTable;
 import com.nickdnepr.utils.Pair;
+import smile.regression.RandomForest;
 
 import java.util.*;
 
@@ -144,6 +145,10 @@ public class CharacteristicsFilter {
         }
         return result;
     }
+
+//    public static void forest(){
+//        RandomForest
+//    }
 
     // common
     private static HashMap<String, ArrayList<Double>> getCharacteristicsFromItems(ArrayList<Item> items) {
